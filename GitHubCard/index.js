@@ -2,14 +2,14 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-axios
-  .get('https://api.github.com/users/EricFerguson76')
-  .then(response => {
-    console.log(response);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+// axios
+//   .get('https://api.github.com/users/EricFerguson76')
+//   .then(response => {
+//     console.log(response.data);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -52,6 +52,49 @@ const followersArray = [];
 </div>
 
 */
+
+const newCard = document.querySelector('.cards');
+
+function gitCard() {
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const image = document.createElement('img');
+  image.src = data.avatar_url;
+
+  const cardInfo = createElement('div');
+  cardInfo.classList.add('card-info');
+
+  const cardName = createElement('h3');
+  cardName.classList.add('name');
+  cardName.textContent = data.name;
+
+  const cardUserName = document.createElement('p');
+  cardUserName.classList.add('username');
+  cardUserName.textContent = data.login;
+
+  const cardLocation = document.createElement('p');
+  cardLocation.textContent = data.location;
+
+  const cardProfile = document.createElement('p');
+  cardProfile.textContent = 'Profile:';
+
+  const cardAnchor = document.createElement('a');
+  cardAnchor.texContent = data.html_url;
+
+  const cardFollowers = document.createElement('p');
+  cardFollowers.textContent = `Followers: ${data.followers}`;
+
+  const cardFollowing = document.createElement('p');
+  cardFollowing.textContent = `Following: ${data.following}`;
+
+  const cardBio = document.createElement('p');
+  cardBio.textContent = `Bio: ${data.bio}`;
+
+  card.appendChild();
+
+  return card;
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
