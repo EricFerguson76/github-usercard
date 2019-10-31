@@ -24,7 +24,13 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'wchamber01',
+  'Gremlin4544',
+  'ElliotPhipps',
+  'lyndsiWilliams',
+  'ArianaShackelford'
+];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -85,15 +91,16 @@ function gitCard(data) {
   cardAnchor.texContent = data.html_url;
 
   const cardFollowers = document.createElement('p');
-  cardFollowers.textContent = `Followers: data.followers`;
+  cardFollowers.textContent = `Followers: ${data.followers}`;
 
   const cardFollowing = document.createElement('p');
-  cardFollowing.textContent = `Following: data.following`;
+  cardFollowing.textContent = `Following: ${data.following}`;
 
   const cardBio = document.createElement('p');
-  cardBio.textContent = `Bio: data.bio`;
+  cardBio.textContent = `Bio: ${data.bio}`;
 
   card.appendChild(image);
+  card.appendChild(cardInfo);
   cardInfo.appendChild(cardName);
   cardInfo.appendChild(cardUserName);
   cardInfo.appendChild(cardLocation);
