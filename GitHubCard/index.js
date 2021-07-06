@@ -24,7 +24,17 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [
+//   'wchamber01',
+//   'Gremlin4544',
+//   'ElliotPhipps',
+//   'lyndsiWilliams',
+//   'ArianaShackelford'
+// ];
+
+// followersArray.forEach(user => {
+
+// });
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -45,6 +55,67 @@ const followersArray = [];
 </div>
 
 */
+axios
+  .get('https://api.github.com/users/EricFerguson76')
+  .then(response => {
+    console.log(response);
+    const newCard = document.querySelector('.cards');
+    const myInfo = response.data;
+    newCard.appendChild(gitCard(myInfo));
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+function gitCard(data) {
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const image = document.createElement('img');
+  image.src = data.avatar_url;
+
+  const cardInfo = document.createElement('div');
+  cardInfo.classList.add('card-info');
+
+  const cardName = document.createElement('h3');
+  cardName.classList.add('name');
+  cardName.textContent = data.name;
+
+  const cardUserName = document.createElement('p');
+  cardUserName.classList.add('username');
+  cardUserName.textContent = data.login;
+
+  const cardLocation = document.createElement('p');
+  cardLocation.textContent = data.location;
+
+  const cardProfile = document.createElement('p');
+  cardProfile.textContent = 'Profile:';
+
+  const cardAnchor = document.createElement('a');
+  cardAnchor.texContent = data.html_url;
+
+  const cardFollowers = document.createElement('p');
+  cardFollowers.textContent = `Followers: ${data.followers}`;
+
+  const cardFollowing = document.createElement('p');
+  cardFollowing.textContent = `Following: ${data.following}`;
+
+  const cardBio = document.createElement('p');
+  cardBio.textContent = `Bio: ${data.bio}`;
+
+  card.appendChild(image);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(cardName);
+  cardInfo.appendChild(cardUserName);
+  cardInfo.appendChild(cardLocation);
+  cardInfo.appendChild(cardProfile);
+  cardProfile.appendChild(cardAnchor);
+  cardInfo.appendChild(cardFollowers);
+  cardInfo.appendChild(cardFollowing);
+  cardInfo.appendChild(cardBio);
+
+  return card;
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
